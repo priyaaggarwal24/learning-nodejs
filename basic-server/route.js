@@ -29,4 +29,6 @@ function requestHandler(request, response) {
     }
 }
 
-module.exports = requestHandler
+module.exports = {
+    handler: requestHandler
+}
