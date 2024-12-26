@@ -33,10 +33,18 @@ const server = http.createServer((request, response)=> {
         response.write('</html>');
         return response.end();
     } else if (request.url === '/message' && request.method === 'POST') {
-        fs.writeFileSync('./basic-server/message.txt', 'DUMMY')
-        response.statusCode = 302
-        response.setHeader('Location', '/')
-        return response.end();
+        const body = []
+        request.on('data', (chunk) => {
+            body.push(chunk);
+        })
+        return request.on('end', () => {
+            const parsedBody = Buffer.concat(body).toString();
+            const message = parsedBody.split('=')[1];
+            fs.writeFileSync('./basic-server/message.txt', message)
+            response.statusCode = 302
+            response.setHeader('Location', '/')
+            response.end();
+        })
     } else {
         response.write('<html>');
         response.write('<head><title>Unhandled route</title></head>');
