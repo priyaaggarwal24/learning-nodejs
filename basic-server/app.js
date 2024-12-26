@@ -1,6 +1,5 @@
 const http = require('http');
 const route = require('./route.js');
-const requestHandler = require('./route.js');
 
 /*
 Plain function
