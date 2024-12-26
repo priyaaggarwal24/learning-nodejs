@@ -29,6 +29,16 @@ function requestHandler(request, response) {
     }
 }
 
-module.exports = {
-    handler: requestHandler
-}
+// method 1 
+// module.exports = requestHandler
+
+// method 2
+// module.exports = {
+//     handler: requestHandler
+// }
+
+// method 3
+// module.exports.handler = requestHandler;
+
+// method 4
+exports.handler = requestHandler;
