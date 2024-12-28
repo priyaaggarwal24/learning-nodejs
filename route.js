@@ -15,7 +15,7 @@ function requestHandler(request, response) {
         return request.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1];
-            fs.writeFileSync('./basic-server/message.txt', message)
+            fs.writeFileSync('./message.txt', message)
             response.statusCode = 302
             response.setHeader('Location', '/')
             response.end();
